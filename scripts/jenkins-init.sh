@@ -11,9 +11,9 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
 	mkfs.ext4 /dev/data/volume1
 fi
 mkdir -p /var/lib/jenkins
+chown jenkins: /var/lib/jenkins
 echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
-chown jenkins: /var/lib/jenkins
 
 # install jenkins
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
