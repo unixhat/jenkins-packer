@@ -31,12 +31,12 @@ pip install awscli
 
 # install terraform
 cd /usr/local/bin
-wget -q https://releases.hashicorp.com/terraform/0.7.7/terraform_0.9.11_linux_amd64.zip
+wget -q https://releases.hashicorp.com/terraform/0.9.11/terraform_0.9.11_linux_amd64.zip
 unzip terraform_0.9.11_linux_amd64.zip
 # install packer
-wget -q https://releases.hashicorp.com/packer/0.10.2/packer_0.10.2_linux_amd64.zip
-unzip packer_0.10.2_linux_amd64.zip
+wget -q https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip
+unzip packer_1.0.2_linux_amd64.zip
 # clean up
 apt-get clean
 rm terraform_0.9.11_linux_amd64.zip
-rm packer_0.10.2_linux_amd64.zip
+rm packer_1.0.2_linux_amd64.zip
