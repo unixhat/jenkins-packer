@@ -5,9 +5,9 @@ vgchange -ay
 
 DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
 if [ "`echo -n $DEVICE_FS`" == "" ] ; then 
-	pvcreate ${DEVICE}
-	vgcreate data ${DEVICE}
-	lvcreate --name volume1 -l 100%FREE data
+	pvcreate ${DEVICE} -y
+	vgcreate data ${DEVICE} -y
+	lvcreate --name volume1 -l 100%FREE data -y
 	mkfs.ext4 /dev/data/volume1
 fi
 mkdir -p /var/lib/jenkins
