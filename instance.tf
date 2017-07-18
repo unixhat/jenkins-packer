@@ -1,6 +1,6 @@
 resource "aws_instance" "jenkins-instance" {
   ami           = "${lookup(var.AMIS, var.AWS_REGION)}"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
 
   # the VPC subnet
   subnet_id = "${aws_subnet.main-public-1.id}"

@@ -9,17 +9,26 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
 	vgcreate data ${DEVICE} -y
 	lvcreate --name volume1 -l 100%FREE data -y
 	mkfs.ext4 /dev/data/volume1
-fi
+
 mkdir -p /var/lib/jenkins
-chown jenkins: /var/lib/jenkins
 echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
+rm -rf /var/lib/jenkins/lost+found
+chown jenkins: /var/lib/jenkins -R
+fi
 
 # install jenkins
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
 apt-get update
 apt-get install -y jenkins=${JENKINS_VERSION} unzip
+
+#mount /dev/data/volume1 /mnt
+#rm -rf /mnt/lost+found
+#mv /var/lib/jenkins /mnt
+#umount /mnt
+#mount /var/lib/jenkins
+#chown jenkins: /var/lib/jenkins -R
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py
